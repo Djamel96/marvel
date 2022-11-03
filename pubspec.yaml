@@ -9,9 +9,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  shared_preferences: ^2.0.15  
+  provider: ^6.0.1 
   cupertino_icons: ^1.0.2
-
+  get: ^4.6.5
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -25,6 +27,16 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
+
+  fonts:
+    - family: DMSans
+      fonts:
+        - asset: fonts/DMSans-Bold.ttf
+        - asset: fonts/DMSans-BoldItalic.ttf
+        - asset: fonts/DMSans-Italic.ttf
+        - asset: fonts/DMSans-Medium.ttf
+        - asset: fonts/DMSans-MediumItalic.ttf
+        - asset: fonts/DMSans-Regular.ttf    
  
 
  
