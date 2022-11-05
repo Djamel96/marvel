@@ -71,6 +71,6 @@ class Character {
         "series": series.toJson(),
         "stories": stories.toJson(),
         "events": events.toJson(),
-        "urls": List<dynamic>.from(urls.map((x) => x.toJson())),
+        "urls": List<CustomUrl>.from(urls.map((x) => x.toJson())),
       };
 }

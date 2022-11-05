@@ -39,6 +39,6 @@ class ResultApi {
         "limit": limit,
         "total": total,
         "count": count,
-        "results": List<dynamic>.from(results.map((x) => x.toJson())),
+        "results": List<Character>.from(results.map((x) => x.toJson())),
       };
 }
