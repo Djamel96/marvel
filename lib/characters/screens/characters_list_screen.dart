@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:marvelphazero/characters/models/character_provider.dart';
 import 'package:marvelphazero/characters/services/get_characters_list_service.dart';
@@ -30,9 +32,10 @@ class _CharactersListScreenState extends State<CharactersListScreen> {
 
   _firstLoad() {
     final characterProvider =
-        Provider.of<CharacterProvider>(context, listen: true);
+        Provider.of<CharacterProvider>(context, listen: false);
     getCharactersList(characterProvider, refresh: true).then((res) {
       if (mounted && res.success) {
+        log('ssssss');
         _loadMoreOnScrolle();
       }
     });
@@ -44,11 +47,14 @@ class _CharactersListScreenState extends State<CharactersListScreen> {
 
   _loadMoreOnScrolle() {
     final characterProvider =
-        Provider.of<CharacterProvider>(context, listen: true);
+        Provider.of<CharacterProvider>(context, listen: false);
     scrollController.addListener(() {
       if (scrollController.position.maxScrollExtent ==
           scrollController.offset) {
-        getCharactersList(characterProvider, refresh: true);
+        log('*******scrollController.offset !characterProvider.laodingMore = ${!characterProvider.laodingMore}');
+        if (!characterProvider.laodingMore) {
+          getCharactersList(characterProvider, refresh: false);
+        }
       }
     });
   }
@@ -58,16 +64,38 @@ class _CharactersListScreenState extends State<CharactersListScreen> {
     final characterProvider =
         Provider.of<CharacterProvider>(context, listen: true);
     return Scaffold(
+      backgroundColor: Colors.grey.shade300,
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text(
+          'Marvel World',
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        ),
+      ),
       body: characterProvider.loading
           ? const Loading()
-          : ListView(
-              controller: scrollController,
-              children: List<Widget>.generate(
+          : ListView(controller: scrollController, children: [
+              ...List<Widget>.generate(
                   characterProvider.resultApi.results.length,
                   (index) => OneCharacterWidget(
                         character: characterProvider.resultApi.results[index],
                       )),
-            ),
+
+              /// If there is more character to load
+              /// show the loading spin
+              const SizedBox(height: 16),
+              characterProvider.resultApi.offset <
+                      characterProvider.resultApi.total
+                  ? const Loading()
+                  : const Text(
+                      'End of results',
+                      style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                          color: Colors.grey),
+                    ),
+              const SizedBox(height: 16),
+            ]),
     );
   }
 }

@@ -12,12 +12,15 @@ class OneCharacterWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.only(bottom: 12),
+      height: 250,
+      width: double.infinity,
       child: Stack(
         children: [
           CustomCachedImage(
-            url: character.thumbnail.path,
+            url: character.thumbnail.path + '.' + character.thumbnail.extension,
             width: double.infinity,
-            height: 150,
+            height: 250,
           ),
           Positioned(
             bottom: 0,
@@ -25,29 +28,39 @@ class OneCharacterWidget extends StatelessWidget {
             right: 0,
             child: Container(
               color: Colors.black.withOpacity(.5),
-              height: 80,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              padding: EdgeInsets.all(16),
+              height: 90,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    character.id.toString(),
-                    style: (const TextStyle(
-                      fontSize: 14,
-                      color: Colors.white,
-                    )),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        character.id.toString(),
+                        style: (const TextStyle(
+                          fontSize: 14,
+                          color: Colors.white,
+                        )),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        character.name,
+                        style: (const TextStyle(
+                            fontSize: 16,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600)),
+                      ),
+                      const SizedBox(height: 8),
+                    ],
                   ),
-                  const SizedBox(height: 4),
-                  Text(
-                    character.name,
-                    style: (const TextStyle(
-                        fontSize: 16,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600)),
-                  ),
-                  const SizedBox(height: 8),
                   Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       RoundedButton(
+                        width: 100,
+                        contentPadding: const EdgeInsets.all(0),
+                        height: 42,
                         content: const Text(
                           'Open Wiki',
                           style: TextStyle(

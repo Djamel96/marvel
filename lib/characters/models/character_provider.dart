@@ -3,7 +3,7 @@ import 'package:marvelphazero/characters/models/result_api.dart';
 
 class CharacterProvider with ChangeNotifier {
   bool loading = true;
-  bool laodingMore = true;
+  bool laodingMore = false;
   bool errorOccured = false;
   late ResultApi resultApi;
 
