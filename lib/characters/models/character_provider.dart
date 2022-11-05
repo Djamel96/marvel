@@ -5,4 +5,8 @@ class CharacterProvider with ChangeNotifier {
   bool loading = true;
   bool errorOccured = false;
   late ResultApi resultApi;
+
+  notify() {
+    notifyListeners();
+  }
 }

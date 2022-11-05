@@ -1,6 +1,6 @@
 import 'dart:developer';
 import 'package:dio/dio.dart';
-import 'constants.dart';
+import '../helpers/constants.dart';
 
 Future<Response?> dioget(
     {required String url, Map<String, dynamic>? parameters}) async {
