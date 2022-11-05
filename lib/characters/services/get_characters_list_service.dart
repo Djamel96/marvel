@@ -8,7 +8,7 @@ import 'package:marvelphazero/http/dio_requests.dart';
 import 'package:marvelphazero/http/generic_response.dart';
 
 Future<GenericResponse> getCharactersList(CharacterProvider characterProvider,
-    {bool refresh = true}) async {
+    {required bool refresh}) async {
   Response? response;
   log('******getCharactersList');
   if (refresh) {
@@ -27,6 +27,8 @@ Future<GenericResponse> getCharactersList(CharacterProvider characterProvider,
     'offset': refresh ? 0 : characterProvider.resultApi.offset,
   };
 
+  log('parameters = $parameters');
+
   await dioget(
     url: Api.characters,
     parameters: parameters,
@@ -35,18 +37,20 @@ Future<GenericResponse> getCharactersList(CharacterProvider characterProvider,
   });
 
   if (response?.statusCode == 200) {
-    log(response!.data.toString());
+    // log(response!.data.toString());
     ResultApi resultApi = ResultApi.fromJson(response!.data['data']);
+    // log('resultApi.offset = ${resultApi.offset}');
     if (refresh) {
       // First enter to screen
       characterProvider.resultApi = resultApi;
+      characterProvider.resultApi.offset = characterProvider.resultApi.count;
       characterProvider.loading = false;
     } else {
       // Load more when schrolling
       characterProvider.resultApi = ResultApi(
         count: resultApi.count,
         limit: resultApi.limit,
-        offset: resultApi.offset,
+        offset: characterProvider.resultApi.results.length + resultApi.count,
         results: characterProvider.resultApi.results + resultApi.results,
         total: resultApi.total,
       );

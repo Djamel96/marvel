@@ -20,7 +20,7 @@ class ResultApi {
     required this.results,
   });
 
-  final int offset;
+  int offset;
   final int limit;
   final int total;
   final int count;
