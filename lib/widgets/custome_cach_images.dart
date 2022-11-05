@@ -32,27 +32,24 @@ class CustomCachedImage extends StatelessWidget {
         : Container(
             color: color,
             alignment: alignment,
-            child: InkWell(
-              onTap: onTap ?? () {},
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(radius),
-                child: CachedNetworkImage(
-                  imageUrl: url!,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(radius),
+              child: CachedNetworkImage(
+                imageUrl: url!,
+                width: width,
+                fit: boxFit,
+                imageBuilder: (context, imageProvider) => Container(
                   width: width,
-                  fit: boxFit,
-                  imageBuilder: (context, imageProvider) => Container(
-                    width: width,
-                    height: height,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: imageProvider,
-                        fit: boxFit,
-                      ),
+                  height: height,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: imageProvider,
+                      fit: boxFit,
                     ),
                   ),
-                  placeholder: (context, url) => _placeHolder(),
-                  errorWidget: (context, url, error) => _placeHolder(),
                 ),
+                placeholder: (context, url) => _placeHolder(),
+                errorWidget: (context, url, error) => _placeHolder(),
               ),
             ),
           );
