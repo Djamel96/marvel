@@ -6,7 +6,7 @@ class RoundedButton extends StatelessWidget {
   final double? height;
   final Widget content;
   final Color backgroundColor;
-  final Color splashColor;
+  final Color? splashColor;
   final GestureTapCallback? onPressed;
   final Border? border;
   final List<BoxShadow>? shadow;
@@ -19,7 +19,7 @@ class RoundedButton extends StatelessWidget {
     required this.content,
     this.onPressed,
     this.backgroundColor = AppColors.appMain100,
-    this.splashColor = AppColors.buttonSplash,
+    this.splashColor,
     this.shadow,
     this.border,
     this.contentPadding,
@@ -58,7 +58,7 @@ class RoundedButton extends StatelessWidget {
               //  height: REGULAR_BUTTON_HEIGHT,
               width: width ?? double.infinity,
               child: InkWell(
-                splashColor: splashColor,
+                splashColor: splashColor ?? AppColors.buttonSplash,
                 customBorder: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(28),
                 ),

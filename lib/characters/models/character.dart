@@ -43,8 +43,10 @@ class Character {
         series: Comics.fromJson(json["series"]),
         stories: Stories.fromJson(json["stories"]),
         events: Comics.fromJson(json["events"]),
-        urls: List<CustomUrl>.from(
-            json["urls"].map((x) => CustomUrl.fromJson(x))),
+        urls: json["urls"] != null
+            ? List<CustomUrl>.from(
+                json["urls"].map((x) => CustomUrl.fromJson(x)))
+            : [],
       );
 
   static List<Character> listFromJson(Map items, {String key = 'results'}) {
