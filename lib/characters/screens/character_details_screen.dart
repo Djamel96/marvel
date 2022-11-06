@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:marvelphazero/characters/models/character.dart';
+import 'package:marvelphazero/characters/widgets/comic_item_widget.dart';
 import 'package:marvelphazero/them/colors.dart';
 import 'package:marvelphazero/widgets/custom_safe_area.dart';
 import 'package:marvelphazero/widgets/custome_cach_images.dart';
@@ -14,10 +15,6 @@ class CharacterDetailsScreen extends StatefulWidget {
 }
 
 class _CharacterDetailsScreenState extends State<CharacterDetailsScreen> {
-  bool _pinned = true;
-  bool _snap = false;
-  bool _floating = false;
-
   @override
   Widget build(BuildContext context) {
     return CustomSafeArea(
@@ -25,22 +22,21 @@ class _CharacterDetailsScreenState extends State<CharacterDetailsScreen> {
         body: CustomScrollView(
           slivers: <Widget>[
             SliverAppBar(
-              pinned: _pinned,
-              snap: _snap,
-              floating: _floating,
-              expandedHeight: 250.0,
+              pinned: true,
+              expandedHeight: 260.0,
               centerTitle: true,
+              toolbarHeight: 50,
               flexibleSpace: FlexibleSpaceBar(
                 titlePadding: EdgeInsets.zero,
                 title: Container(
                     height: 50,
                     alignment: Alignment.center,
                     width: double.infinity,
-                    color: Colors.white.withOpacity(.4),
+                    color: Colors.white.withOpacity(.6),
                     child: Text(
                       widget.character.name,
-                      style: TextStyle(
-                        fontSize: 16,
+                      style: const TextStyle(
+                        fontSize: 18,
                         fontWeight: FontWeight.w700,
                         color: AppColors.defaultTextColor,
                       ),
@@ -50,22 +46,21 @@ class _CharacterDetailsScreenState extends State<CharacterDetailsScreen> {
                       '.' +
                       widget.character.thumbnail.extension,
                   width: double.infinity,
-                  height: 250,
+                  height: 260,
                 ),
               ),
             ),
             SliverList(
               delegate: SliverChildBuilderDelegate(
                 (BuildContext context, int index) {
-                  return Container(
-                    color: index.isOdd ? Colors.white : Colors.black12,
-                    height: 100.0,
-                    child: Center(
-                      child: Text('$index', textScaleFactor: 5),
+                  return Padding(
+                    padding: EdgeInsets.only(top: index == 0 ? 20.0 : 0),
+                    child: ComicitemWidget(
+                      comicsItem: widget.character.comics.items[index],
                     ),
                   );
                 },
-                childCount: 20,
+                childCount: widget.character.comics.items.length,
               ),
             ),
           ],
