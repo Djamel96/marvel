@@ -16,11 +16,13 @@ class CharacterDetailsScreen extends StatefulWidget {
 }
 
 class _CharacterDetailsScreenState extends State<CharacterDetailsScreen> {
+  final ScrollController scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
     return CustomSafeArea(
       child: Scaffold(
         body: CustomScrollView(
+          controller: scrollController,
           slivers: <Widget>[
             SliverAppBar(
               pinned: true,
