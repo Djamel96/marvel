@@ -73,12 +73,13 @@ class _CharacterDetailsScreenState extends State<CharacterDetailsScreen> {
   /// character comics by the pagination
 
   _loadMoreOnScrolle() {
-    final characterProvider =
-        Provider.of<CharacterProvider>(context, listen: false);
     scrollController.addListener(() {
       if (scrollController.position.maxScrollExtent ==
           scrollController.offset) {
-        if (!characterProvider.laodingMore && mounted) {
+        if (!loadingMore && mounted && (comicData.offset < comicData.total)) {
+          setState(() {
+            loadingMore = true;
+          });
           getCharacterComicList(
             character: widget.character,
             offset: comicData.offset,
@@ -171,12 +172,35 @@ class _CharacterDetailsScreenState extends State<CharacterDetailsScreen> {
                               ? SliverList(
                                   delegate: SliverChildBuilderDelegate(
                                     (BuildContext context, int index) {
-                                      return Padding(
-                                        padding: EdgeInsets.only(
-                                            top: index == 0 ? 20.0 : 0),
-                                        child: ComicitemWidget(
-                                          comicsItem: comicData.results[index],
-                                        ),
+                                      return Column(
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                top: index == 0 ? 20.0 : 0),
+                                            child: ComicitemWidget(
+                                              comicsItem:
+                                                  comicData.results[index],
+                                            ),
+                                          ),
+                                          if (index ==
+                                              comicData.results.length - 1)
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 20),
+                                              child: comicData.results.length <
+                                                      comicData.total
+                                                  ? const Loading()
+                                                  : const Text(
+                                                      'End of results',
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          fontSize: 16,
+                                                          color: Colors.grey),
+                                                    ),
+                                            )
+                                        ],
                                       );
                                     },
                                     childCount: comicData.results.length,
