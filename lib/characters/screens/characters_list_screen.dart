@@ -71,8 +71,8 @@ class _CharactersListScreenState extends State<CharactersListScreen> {
         appBar: AppBar(
           centerTitle: true,
           title: Image.asset(
-            'assets/images/marvel_image.jpg',
-            width: 120,
+            'assets/images/marvel_image.png',
+            width: 160,
           ),
         ),
         body: characterProvider.loading

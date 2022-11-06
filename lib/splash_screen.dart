@@ -22,8 +22,8 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   _firstLoad() async {
-    // Delay 2 seconds to show the splash screen
-    await Future.delayed(const Duration(seconds: 2));
+    // Delay 3 seconds to show the splash screen
+    await Future.delayed(const Duration(seconds: 3));
     // Check if the internet is active on mobile
     checkConnectivityAvailability().then((available) {
       if (available) {
@@ -45,11 +45,26 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Center(
-        child: Image.asset(
-          'assets/images/splash.jpeg',
-          width: double.infinity,
-        ),
+      body: Column(
+        children: [
+          const Spacer(),
+          Center(
+            child: Image.asset(
+              'assets/images/splash.jpeg',
+              width: double.infinity,
+            ),
+          ),
+          const Spacer(),
+          const Text(
+            'Phaze.ro',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w700,
+              color: Colors.grey,
+            ),
+          ),
+          const SizedBox(height: 30),
+        ],
       ),
     );
   }

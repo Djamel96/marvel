@@ -10,7 +10,6 @@ import 'package:marvelphazero/http/generic_response.dart';
 Future<GenericResponse> getCharactersList(CharacterProvider characterProvider,
     {required bool refresh}) async {
   Response? response;
-  log('******getCharactersList');
   if (refresh) {
     characterProvider.loading = true;
     characterProvider.errorOccured = false;
@@ -21,13 +20,11 @@ Future<GenericResponse> getCharactersList(CharacterProvider characterProvider,
 
   Map<String, dynamic>? parameters = {
     'apikey': apikey,
-    'hash': '8485d7d73f4ed2d421b5305aaae4de2d',
-    'ts': 1667469211,
+    'hash': hash,
+    'ts': ts,
     'limit': 10,
     'offset': refresh ? 0 : characterProvider.resultApi.offset,
   };
-
-  log('parameters = $parameters');
 
   await dioget(
     url: Api.characters,
@@ -37,9 +34,8 @@ Future<GenericResponse> getCharactersList(CharacterProvider characterProvider,
   });
 
   if (response?.statusCode == 200) {
-    // log(response!.data.toString());
+    log(response!.data.toString());
     ResultApi resultApi = ResultApi.fromJson(response!.data['data']);
-    // log('resultApi.offset = ${resultApi.offset}');
     if (refresh) {
       // First enter to screen
       characterProvider.resultApi = resultApi;
@@ -62,6 +58,5 @@ Future<GenericResponse> getCharactersList(CharacterProvider characterProvider,
     characterProvider.errorOccured = true;
     characterProvider.notify();
   }
-
   return GenericResponse.defaultError();
 }
