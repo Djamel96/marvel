@@ -16,6 +16,6 @@ You will also need to get the keys from the Marvel api to be able to fetch data:
 - [Marvel Documentation General Info](https://developer.marvel.com/documentation/generalinfo).
 - [Marvel Api authorization](https://developer.marvel.com/documentation/authorization).
 
-To download the apk and install it on you Android phone :
+To download the apk and install it on you Android phone:
 [Marvel Phaze.ro APK](https://drive.google.com/file/d/1133nD3IIL_mWhISUo0iarP7ITJTB4EBk/view?usp=share_link).
  
