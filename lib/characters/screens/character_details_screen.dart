@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:marvelphazero/characters/models/character.dart';
-import 'package:marvelphazero/characters/models/character_provider.dart';
 import 'package:marvelphazero/characters/models/comic_data.dart';
 import 'package:marvelphazero/characters/services/get_caracter_comics.dart';
 import 'package:marvelphazero/characters/widgets/comic_item_widget.dart';
@@ -10,7 +9,6 @@ import 'package:marvelphazero/widgets/custom_safe_area.dart';
 import 'package:marvelphazero/widgets/custome_cach_images.dart';
 import 'package:marvelphazero/widgets/default_loading.dart';
 import 'package:marvelphazero/widgets/error_occured_widget.dart';
-import 'package:provider/provider.dart';
 
 class CharacterDetailsScreen extends StatefulWidget {
   final Character character;
