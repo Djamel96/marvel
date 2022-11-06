@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:marvelphazero/characters/models/character.dart';
 import 'package:marvelphazero/characters/widgets/comic_item_widget.dart';
 import 'package:marvelphazero/them/colors.dart';
@@ -26,6 +27,17 @@ class _CharacterDetailsScreenState extends State<CharacterDetailsScreen> {
               expandedHeight: 260.0,
               centerTitle: true,
               toolbarHeight: 50,
+              automaticallyImplyLeading: false,
+              leading: Container(
+                margin: EdgeInsets.all(6),
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(.6),
+                  shape: BoxShape.circle,
+                ),
+                child: BackButton(
+                  onPressed: () => Get.back(),
+                ),
+              ),
               flexibleSpace: FlexibleSpaceBar(
                 titlePadding: EdgeInsets.zero,
                 title: Container(

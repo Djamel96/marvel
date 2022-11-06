@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:marvelphazero/characters/models/character_provider.dart';
 import 'package:marvelphazero/characters/services/get_characters_list_service.dart';
 import 'package:marvelphazero/characters/widgets/one_caracter_widget.dart';
+import 'package:marvelphazero/them/colors.dart';
 import 'package:marvelphazero/widgets/custom_safe_area.dart';
 import 'package:marvelphazero/widgets/default_loading.dart';
 import 'package:provider/provider.dart';
@@ -69,9 +70,9 @@ class _CharactersListScreenState extends State<CharactersListScreen> {
         backgroundColor: Colors.grey.shade300,
         appBar: AppBar(
           centerTitle: true,
-          title: const Text(
-            'Marvel World',
-            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          title: Image.asset(
+            'assets/images/marvel_image.jpg',
+            width: 120,
           ),
         ),
         body: characterProvider.loading
