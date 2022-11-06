@@ -7,6 +7,7 @@ import 'package:marvelphazero/characters/widgets/one_caracter_widget.dart';
 import 'package:marvelphazero/them/colors.dart';
 import 'package:marvelphazero/widgets/custom_safe_area.dart';
 import 'package:marvelphazero/widgets/default_loading.dart';
+import 'package:marvelphazero/widgets/error_occured_widget.dart';
 import 'package:provider/provider.dart';
 
 class CharactersListScreen extends StatefulWidget {
@@ -53,7 +54,6 @@ class _CharactersListScreenState extends State<CharactersListScreen> {
     scrollController.addListener(() {
       if (scrollController.position.maxScrollExtent ==
           scrollController.offset) {
-        log('*******scrollController.offset !characterProvider.laodingMore = ${!characterProvider.laodingMore}');
         if (!characterProvider.laodingMore) {
           getCharactersList(characterProvider, refresh: false);
         }
@@ -77,28 +77,35 @@ class _CharactersListScreenState extends State<CharactersListScreen> {
         ),
         body: characterProvider.loading
             ? const Loading()
-            : ListView(controller: scrollController, children: [
-                ...List<Widget>.generate(
-                    characterProvider.resultApi.results.length,
-                    (index) => OneCharacterWidget(
-                          character: characterProvider.resultApi.results[index],
-                        )),
+            : Container(
+                child: characterProvider.errorOccured
+                    ? ErrorOccuredWidget(onRetry: () {
+                        _firstLoad();
+                      })
+                    : ListView(controller: scrollController, children: [
+                        ...List<Widget>.generate(
+                            characterProvider.resultApi.results.length,
+                            (index) => OneCharacterWidget(
+                                  character: characterProvider
+                                      .resultApi.results[index],
+                                )),
 
-                /// If there is more character to load
-                /// show the loading spin
-                const SizedBox(height: 16),
-                characterProvider.resultApi.offset <
-                        characterProvider.resultApi.total
-                    ? const Loading()
-                    : const Text(
-                        'End of results',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                            color: Colors.grey),
-                      ),
-                const SizedBox(height: 16),
-              ]),
+                        /// If there is more character to load
+                        /// show the loading spin
+                        const SizedBox(height: 16),
+                        characterProvider.resultApi.offset <
+                                characterProvider.resultApi.total
+                            ? const Loading()
+                            : const Text(
+                                'End of results',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 16,
+                                    color: Colors.grey),
+                              ),
+                        const SizedBox(height: 16),
+                      ]),
+              ),
       ),
     );
   }

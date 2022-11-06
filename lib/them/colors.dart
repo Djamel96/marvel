@@ -8,4 +8,5 @@ class AppColors {
   static const Color buttonShadow1 = Color(0x3300d8a0);
   static const Color buttonShadow2 = Color(0x0f0a1646);
   static Color gery236 = const Color.fromRGBO(236, 236, 236, 1);
+  static Color red235 = const Color.fromRGBO(235, 116, 116, 1);
 }

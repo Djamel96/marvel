@@ -7,7 +7,7 @@ It consumes the [Marvel Apis](https://developer.marvel.com/) to show the Marvel 
 ## Getting Started
 To Run this code you need to : 
 
-- Correctly [install flutter on your machine.](https://docs.flutter.dev/get-started/install).
+- Correctly [install flutter on your machine](https://docs.flutter.dev/get-started/install).
 - Clone this project.
 - Run 'Flutter pub get' in commande line.
 
@@ -16,6 +16,6 @@ You will also need to get the keys from the Marvel api to be able to fetch data:
 - [Marvel Documentation General Info](https://developer.marvel.com/documentation/generalinfo).
 - [Marvel Api authorization](https://developer.marvel.com/documentation/authorization).
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+To download the apk and install it on you Android phone :
+[Marvel Phaze.ro APK](https://flutter.dev/docs).
+ 

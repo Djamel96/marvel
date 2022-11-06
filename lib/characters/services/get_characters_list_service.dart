@@ -55,6 +55,7 @@ Future<GenericResponse> getCharactersList(CharacterProvider characterProvider,
     characterProvider.notify();
     return GenericResponse.defaultSuccess();
   } else {
+    characterProvider.loading = false;
     characterProvider.errorOccured = true;
     characterProvider.notify();
   }
