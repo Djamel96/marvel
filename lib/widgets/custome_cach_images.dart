@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:marvelphazero/them/colors.dart';
+import 'package:marvelphazero/widgets/default_loading.dart';
 
 class CustomCachedImage extends StatelessWidget {
   final String? url;
@@ -60,6 +61,9 @@ class CustomCachedImage extends StatelessWidget {
       alignment: alignment,
       width: width,
       height: height,
+      child: Loading(
+        color: Colors.grey.shade300,
+      ),
       decoration: BoxDecoration(
           color: AppColors.gery236,
           shape: shape,

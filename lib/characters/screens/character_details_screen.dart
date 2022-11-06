@@ -29,7 +29,7 @@ class _CharacterDetailsScreenState extends State<CharacterDetailsScreen> {
               toolbarHeight: 50,
               automaticallyImplyLeading: false,
               leading: Container(
-                margin: EdgeInsets.all(6),
+                margin: const EdgeInsets.all(6),
                 decoration: BoxDecoration(
                   color: Colors.white.withOpacity(.6),
                   shape: BoxShape.circle,
@@ -62,19 +62,38 @@ class _CharacterDetailsScreenState extends State<CharacterDetailsScreen> {
                 ),
               ),
             ),
-            SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (BuildContext context, int index) {
-                  return Padding(
-                    padding: EdgeInsets.only(top: index == 0 ? 20.0 : 0),
-                    child: ComicitemWidget(
-                      comicsItem: widget.character.comics.items[index],
+            widget.character.comics.items.isNotEmpty
+                ? SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      (BuildContext context, int index) {
+                        return Padding(
+                          padding: EdgeInsets.only(top: index == 0 ? 20.0 : 0),
+                          child: ComicitemWidget(
+                            comicsItem: widget.character.comics.items[index],
+                          ),
+                        );
+                      },
+                      childCount: widget.character.comics.items.length,
                     ),
-                  );
-                },
-                childCount: widget.character.comics.items.length,
-              ),
-            ),
+                  )
+                : SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      (BuildContext context, int index) {
+                        return const Padding(
+                          padding: EdgeInsets.only(top: 40),
+                          child: Center(
+                              child: Text(
+                            "No Comics available !",
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          )),
+                        );
+                      },
+                      childCount: 1,
+                    ),
+                  ),
           ],
         ),
       ),
