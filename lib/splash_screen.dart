@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:marvelphazero/characters/screens/characters_list_screen.dart';
-
 import 'helpers/check_connectivity.dart';
 import 'no_internet_screen.dart';
 
