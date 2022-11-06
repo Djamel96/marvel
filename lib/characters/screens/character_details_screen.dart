@@ -151,6 +151,7 @@ class _CharacterDetailsScreenState extends State<CharacterDetailsScreen> {
                                   color: Colors.white.withOpacity(.6),
                                   child: Text(
                                     widget.character.name,
+                                    textAlign: TextAlign.center,
                                     style: const TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.w700,
@@ -166,7 +167,7 @@ class _CharacterDetailsScreenState extends State<CharacterDetailsScreen> {
                               ),
                             ),
                           ),
-                          widget.character.comics.items.isNotEmpty
+                          comicData.results.isNotEmpty
                               ? SliverList(
                                   delegate: SliverChildBuilderDelegate(
                                     (BuildContext context, int index) {

@@ -49,13 +49,13 @@ class ComicitemWidget extends StatelessWidget {
             ),
             const SizedBox(height: 14),
             Wrap(
-              spacing: 0,
+              alignment: WrapAlignment.spaceBetween,
               children: List<Widget>.generate(
                   comicsItem.urls.length,
                   (index) => Padding(
                         padding: const EdgeInsets.only(right: 8.0, bottom: 8),
                         child: RoundedButton(
-                          width: 100,
+                          width: 90,
                           contentPadding: const EdgeInsets.all(0),
                           height: 42,
                           content: Text(
