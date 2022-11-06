@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.app.marvelphazero">
+   <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="marvelphazero"
+        android:label="Marvel Phazero"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
