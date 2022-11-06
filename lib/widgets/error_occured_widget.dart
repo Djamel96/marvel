@@ -2,23 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:marvelphazero/them/colors.dart';
 import 'package:marvelphazero/widgets/rounded_button.dart';
 
-class ErrorOccuredWidget extends StatefulWidget {
+class ErrorOccuredWidget extends StatelessWidget {
   final Function? onRetry;
-  final bool showLogout;
+  final bool showAppbar;
+
   const ErrorOccuredWidget({
     Key? key,
     this.onRetry,
-    this.showLogout = false,
+    this.showAppbar = false,
   }) : super(key: key);
 
   @override
-  _ErrorOccuredWidgetState createState() => _ErrorOccuredWidgetState();
-}
-
-class _ErrorOccuredWidgetState extends State<ErrorOccuredWidget> {
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: showAppbar ? AppBar() : null,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -65,8 +62,8 @@ class _ErrorOccuredWidgetState extends State<ErrorOccuredWidget> {
                   color: Colors.white),
             ),
             onPressed: () {
-              if (widget.onRetry != null) {
-                widget.onRetry!();
+              if (onRetry != null) {
+                onRetry!();
               }
             },
           ),

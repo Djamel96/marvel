@@ -4,4 +4,6 @@ class Api {
   static const String apiroot = '$root/$version/public';
 
   static const String characters = '$apiroot/characters';
+  static const String characterComicsList =
+      '$apiroot/characters/characterId/comics';
 }

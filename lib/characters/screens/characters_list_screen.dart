@@ -38,7 +38,6 @@ class _CharactersListScreenState extends State<CharactersListScreen> {
         Provider.of<CharacterProvider>(context, listen: false);
     getCharactersList(characterProvider, refresh: true).then((res) {
       if (mounted && res.success) {
-        log('ssssss');
         _loadMoreOnScrolle();
       }
     });

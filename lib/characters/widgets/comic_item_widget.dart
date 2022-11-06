@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:marvelphazero/characters/models/comics_item.dart';
+import 'package:marvelphazero/characters/models/comic_data.dart';
 import 'package:marvelphazero/helpers/custom_url_launch.dart';
+import 'package:marvelphazero/helpers/text_helpers.dart';
 import 'package:marvelphazero/widgets/rounded_button.dart';
 
 class ComicitemWidget extends StatelessWidget {
-  final ComicsItem comicsItem;
+  final Result comicsItem;
   const ComicitemWidget({
     Key? key,
     required this.comicsItem,
@@ -14,10 +15,10 @@ class ComicitemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(left: 16, right: 16, bottom: 12),
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       alignment: Alignment.center,
       width: double.infinity,
-      height: 90,
+      // height: 90,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: Colors.white,
@@ -34,37 +35,46 @@ class ComicitemWidget extends StatelessWidget {
               spreadRadius: 0)
         ],
       ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Expanded(
-            child: Text(
-              comicsItem.name,
+      child: SizedBox(
+        width: double.infinity,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              comicsItem.title,
               style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
               ),
             ),
-          ),
-          const SizedBox(width: 10),
-          RoundedButton(
-            width: 100,
-            contentPadding: const EdgeInsets.all(0),
-            height: 42,
-            content: const Text(
-              'Open URL',
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w700,
-              ),
+            const SizedBox(height: 14),
+            Wrap(
+              spacing: 0,
+              children: List<Widget>.generate(
+                  comicsItem.urls.length,
+                  (index) => Padding(
+                        padding: const EdgeInsets.only(right: 8.0, bottom: 8),
+                        child: RoundedButton(
+                          width: 100,
+                          contentPadding: const EdgeInsets.all(0),
+                          height: 42,
+                          content: Text(
+                            capitalize(comicsItem.urls[index].type),
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          onPressed: () {
+                            try {
+                              launchURL(comicsItem.urls[index].url);
+                            } catch (e) {}
+                          },
+                        ),
+                      )),
             ),
-            onPressed: () {
-              try {
-                launchURL(comicsItem.resourceUri);
-              } catch (e) {}
-            },
-          )
-        ],
+          ],
+        ),
       ),
     );
   }
