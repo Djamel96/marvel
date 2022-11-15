@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:marvelphazero/characters/models/stories.dart';
 import 'package:marvelphazero/characters/models/thumbnail.dart';
 import 'comics.dart';
