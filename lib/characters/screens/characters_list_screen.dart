@@ -1,10 +1,7 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:marvelphazero/characters/models/character_provider.dart';
 import 'package:marvelphazero/characters/services/get_characters_list_service.dart';
 import 'package:marvelphazero/characters/widgets/one_caracter_widget.dart';
-import 'package:marvelphazero/them/colors.dart';
 import 'package:marvelphazero/widgets/custom_safe_area.dart';
 import 'package:marvelphazero/widgets/default_loading.dart';
 import 'package:marvelphazero/widgets/error_occured_widget.dart';
